@@ -10,7 +10,16 @@
     if (is_post() || is_page()) title = page.title + " | " + config.title;
     if (is_category()) title = "Categories: " + page.category + " | " + config.title;
     if (is_tag()) title = "Tags: " + page.tag + " | " + config.title;
-    if (is_archive()) title = "Archives | " + config.title;
+    if (is_archive()) {
+        if (typeof page.year !== 'undefined' && typeof page.month !== 'undefined') {
+            const m = String(page.month).padStart(2, '0');
+            title = `Archives: ${page.year}/${m} | ${config.title}`;
+        } else if (typeof page.year !== 'undefined') {
+            title = `Archives: ${page.year} | ${config.title}`;
+        } else {
+            title = "Archives | " + config.title;
+        }
+    }
 %>
 <!DOCTYPE html>
 <html lang="<%- config.language %>">
