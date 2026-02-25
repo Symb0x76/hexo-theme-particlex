@@ -7,12 +7,12 @@ avatar: /images/avatar.jpg
 # Home page background image
 # Supports theme-specific background images:
 # background:
-#     light: /images/background.jpg
-#     dark: /images/background-dark.jpg
+#     light: /images/background.png
+#     dark: /images/background-dark.png
 # Legacy array syntax is still supported as fallback random images.
 background:
-    light: /images/background.jpg
-    dark: /images/background-dark.jpg
+    light: /images/background.png
+    dark: /images/background-dark.png
 
 # Loading image
 loading: /images/loading.gif
@@ -55,21 +55,35 @@ menu:
 card:
     enable: true
     description: |
-        Description
-        ...
+        分享开发经验、踩坑经历以及个人兴趣爱好
     iconLinks:
+      # Icon links in card, supports Font Awesome 6 icons
+      - name: github
+        theme: brands
+        link: https://github.com/Symb0x76
+      - name: email
+        theme: solid
+        link: mailto:symb0x76@gmail.com
+      - name: bilibili
+        theme: brands
+        link: https://space.bilibili.com/356147928
     friendLinks:
-        Argvchs: https://argvchs.github.io
-
-# Footer info
+        futurefe414: https://futurefe414.github.io/
+        ttdr: http://blog.ttdr.top/
+        Y11han: https://blog.y11han.icu/
+        s3loy: https://blog.s3loy.tech/
+        SeanDictionary: https://seandictionary.top/
+        cEvolve05: https://cevolve05.github.io/
+        io-wy: https://io-wy.github.io/
+        Blauter: https://blog.bluespace.ren/
+        FOTH: https://www.foth.top/
 footer:
-    since: 2022
+    since: 2025
     # Customize the server domain name ICP
     ICP:
-        enable: false
-        code:
-        link:
-
+        enable: true
+        link: https://beian.miit.gov.cn/
+        code: 苏ICP备2024151671号-2
             # Polyfill
             # https://polyfill.io
 polyfill:
@@ -136,19 +150,64 @@ gitalk:
         # Waline
         # https://github.com/walinejs/waline
 waline:
-    enable: false
-    serverURL: # Waline server address url, you should set this to your own link
-    locale: # Locale: https://waline.js.org/guide/client/i18n.html#locale-option
+    enable: true
+    serverURL: https://waline-blog0x76.vercel.app # Waline server address url, you should set this to your own link
+    locale:
+        # Locale: https://waline.js.org/guide/client/i18n.html#locale-option
+        nick: 昵称
+        nickError: 昵称不能为空
+        mail: 邮箱
+        mailError: 邮箱格式不正确
+        link: 网址
+        optional: 可选
+        placeholder: 欢迎留言，支持 Markdown
+        submit: 提交
+        preview: 预览
+        sofa: 来发第一条评论吧~
+        comment: 评论
+        home: 首页
+        login: 登录
+        logout: 退出登录
+        admin: 管理员
+        sticky: 置顶
+        word: 字
+        wordHint: 评论字数应在 $0 到 $1 之间！
+        loading: 加载中…
+        reactionTitle: 你认为这篇文章怎么样？
+        reaction0: 一般
+        reaction1: 不错
+        reaction2: 很棒
+        reaction3: 超赞
+        reply: 回复
+        replyTo: 回复 @ $0
+        cancelReply: 取消回复
+        cancel: 取消
+        confirm: 确认
+        continue: 继续
+        more: 加载更多
+        refresh: 刷新
+        uploadImage: 上传图片
+        seconds: 秒前
+        minutes: 分钟前
+        hours: 小时前
+        days: 天前
+        now: 刚刚
+        uploading: 正在上传…
+        uploadDone: 上传完成
+        uploadFail: 上传失败
+        code: 验证码
+        codeError: 验证码错误
     commentCount: true # If false, comment count will only be displayed in post page, not in home page
     pageview: false # Pageviews count, Note: You should not enable both `waline.pageview` and `leancloud_visitors`
     emoji:
       # Custom emoji
-      - https://unpkg.com/@waline/emojis@1.2.0/weibo
-      - https://unpkg.com/@waline/emojis@1.2.0/alus
-      - https://unpkg.com/@waline/emojis@1.2.0/bilibili
-      - https://unpkg.com/@waline/emojis@1.2.0/qq
-      - https://unpkg.com/@waline/emojis@1.2.0/tieba
-      - https://unpkg.com/@waline/emojis@1.2.0/tw-emoji
+      - https://unpkg.com/@waline/emojis@1.4.0/weibo
+      - https://unpkg.com/@waline/emojis@1.4.0/alus
+      - https://unpkg.com/@waline/emojis@1.4.0/bilibili
+      - https://unpkg.com/@waline/emojis@1.4.0/bmoji
+      - https://unpkg.com/@waline/emojis@1.4.0/qq
+      - https://unpkg.com/@waline/emojis@1.4.0/tieba
+      - https://unpkg.com/@waline/emojis@1.4.0/tw-emoji
     meta:
       # Comment information, valid meta are nick, mail and link
       - nick
@@ -157,7 +216,7 @@ waline:
     requiredMeta:
       # Set required meta field, e.g.: [nick] | [nick, mail]
       - nick
-    lang: # Language, available values: en-US, zh-CN, zh-TW, pt-BR, ru-RU, jp-JP
+    lang: zh-CN # Language, available values: en-US, zh-CN, zh-TW, pt-BR, ru-RU, jp-JP
     wordLimit: 0 # Word limit, no limit when setting to 0
     login: enable # Whether enable login, can choose from 'enable', 'disable' and 'force'
     pageSize: 10 # Comment per page

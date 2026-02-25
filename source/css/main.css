@@ -529,10 +529,10 @@
 	margin-right: 10px;
 }
 .toc-container {
-	background: #fff;
-	border: 1px solid #e0e0e0;
+	background: #ffffff;
+	border: 1px solid #dde3ea;
 	border-radius: 10px;
-	box-shadow: 0 0 10px #d9d9d980;
+	box-shadow: 0 4px 14px #8da2b71f;
 	margin-bottom: 30px;
 	max-width: 100%;
 	padding: 0;
@@ -540,9 +540,9 @@
 }
 .toc-container .toc-header {
 	align-items: center;
-	background: linear-gradient(120deg, #9abbf7 0%, #ffbbf4 100%);
+	background: #dfe6ee;
 	border-radius: 10px 10px 0 0;
-	color: #fff;
+	color: #44596f;
 	display: flex;
 	justify-content: space-between;
 	padding: 15px 20px;
@@ -554,7 +554,7 @@
 .toc-container .toc-toggle {
 	background: none;
 	border: none;
-	color: #fff;
+	color: #5b7087;
 	cursor: pointer;
 	font-size: 16px;
 	padding: 0;
@@ -589,12 +589,12 @@
 		color 0.25s;
 }
 .toc-container #toc a:hover {
-	border-bottom-color: #9abbf7;
-	color: #9abbf7;
+	border-bottom-color: #7f95ad;
+	color: #617991;
 }
 .toc-container #toc a.active {
-	border-left: 3px solid #9abbf7;
-	color: #9abbf7;
+	border-left: 3px solid #768da6;
+	color: #4f6780;
 	font-weight: bold;
 	padding-left: 10px;
 }
@@ -701,14 +701,14 @@ body::-webkit-scrollbar-track {
 	white-space: normal !important;
 }
 .language {
-	background: linear-gradient(to right, #ed6ea0 0%, #ec8c69 100%);
+	background: #6f8298;
 	border-radius: 0 0 10px 10px;
-	box-shadow: 1px 1px 0.75rem #ed6ea14d;
-	color: #fff;
-	font-size: 12px;
-	font-weight: bold;
+	box-shadow: 0 1px 4px #5f7ea626;
+	color: rgba(255, 255, 255, 0.88);
+	font-size: 11px;
+	font-weight: 600;
 	left: 30px;
-	padding: 10px 15px;
+	padding: 7px 12px;
 	position: absolute;
 	top: 0;
 }
@@ -1035,6 +1035,11 @@ html[data-theme="dark"] .article .info .date,
 html[data-theme="dark"] .copycode {
 	color: rgba(255, 255, 255, 0.72);
 }
+html[data-theme="dark"] .language {
+	background: #3f4c61;
+	box-shadow: 0 1px 4px #00000026;
+	color: rgba(255, 255, 255, 0.78);
+}
 html[data-theme="dark"] h1,
 html[data-theme="dark"] h2,
 html[data-theme="dark"] h3,
@@ -1066,19 +1071,27 @@ html[data-theme="dark"] blockquote {
 	border-left-color: rgba(102, 175, 239, 0.75);
 }
 html[data-theme="dark"] .toc-container {
-	background: rgba(255, 255, 255, 0.06);
-	border-color: rgba(255, 255, 255, 0.14);
+	background: rgba(255, 255, 255, 0.05);
+	border-color: rgba(255, 255, 255, 0.12);
+	box-shadow: 0 6px 16px rgba(0, 0, 0, 0.22);
+}
+html[data-theme="dark"] .toc-container .toc-header {
+	background: rgba(122, 143, 166, 0.28);
+	color: rgba(255, 255, 255, 0.9);
+}
+html[data-theme="dark"] .toc-container .toc-toggle {
+	color: rgba(255, 255, 255, 0.75);
 }
 html[data-theme="dark"] .toc-container #toc a {
 	color: rgba(255, 255, 255, 0.72);
 }
 html[data-theme="dark"] .toc-container #toc a:hover {
-	border-bottom-color: #66afef;
-	color: #66afef;
+	border-bottom-color: #86a5c7;
+	color: #9db9d8;
 }
 html[data-theme="dark"] .toc-container #toc a.active {
-	border-left-color: #66afef;
-	color: #66afef;
+	border-left-color: #9ab6d6;
+	color: #b4cbe4;
 }
 html[data-theme="dark"] #footer #footer-wrap {
 	border-top-color: rgba(255, 255, 255, 0.18);
@@ -1160,6 +1173,11 @@ html[data-theme="light"] .article .info .date,
 html[data-theme="light"] .copycode {
 	color: #5c6b72;
 }
+html[data-theme="light"] .language {
+	background: #e6ecf3;
+	box-shadow: 0 1px 4px #9db0c41f;
+	color: #586a7c;
+}
 html[data-theme="light"] .input {
 	background: #f6f8fa;
 	border: 1px solid #d0d7de;
@@ -1178,6 +1196,29 @@ html[data-theme="light"] code {
 html[data-theme="light"] blockquote {
 	background: #d9e8ff6b;
 	border-left-color: #1e3e3f;
+}
+html[data-theme="light"] .toc-container {
+	background: #ffffff;
+	border-color: #dde3ea;
+	box-shadow: 0 4px 14px #8da2b71f;
+}
+html[data-theme="light"] .toc-container .toc-header {
+	background: #dfe6ee;
+	color: #44596f;
+}
+html[data-theme="light"] .toc-container .toc-toggle {
+	color: #5b7087;
+}
+html[data-theme="light"] .toc-container #toc a {
+	color: #5c6b72;
+}
+html[data-theme="light"] .toc-container #toc a:hover {
+	border-bottom-color: #7f95ad;
+	color: #617991;
+}
+html[data-theme="light"] .toc-container #toc a.active {
+	border-left-color: #768da6;
+	color: #4f6780;
 }
 html[data-theme="light"] #footer #footer-wrap {
 	border-top-color: #aaa;
