@@ -35,9 +35,17 @@
 <% } %>
 <% if (theme.waline.enable) { %>
 <script>
-    Waline.init({
+    const getWalineTheme = () => {
+        return document.documentElement.getAttribute("data-theme") === "dark"
+            ? "dark"
+            : "light";
+    };
+
+    const waline = Waline.init({
         el: "#waline-container",
         serverURL: "<%- theme.waline.serverURL %>",
+        dark: "html[data-theme='dark']",
+        theme: getWalineTheme(),
         commentCount: <%- theme.waline.commentCount %>,
         pageview: <%- theme.waline.pageview %>,
         emoji: "<%- (theme.waline.emoji) %>".split(","),
@@ -51,6 +59,16 @@
         locale: <%- JSON.stringify(theme.waline.locale) %>,
         <% } %>
     });
+
+    if (waline && typeof waline.update === "function") {
+        const themeObserver = new MutationObserver(() => {
+            waline.update({ theme: getWalineTheme() });
+        });
+        themeObserver.observe(document.documentElement, {
+            attributes: true,
+            attributeFilter: ["data-theme"],
+        });
+    }
 </script>
 <% } %>
 <% if (theme.twikoo.enable) { %>

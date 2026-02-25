@@ -1,6 +1,24 @@
 <%
     let posts = site.posts,
         current = (page.current - 1) * config.index_generator.per_page;
+    const colorConfig = theme.colors || [];
+    const legacyColors = Array.isArray(colorConfig) ? colorConfig : [];
+    const lightColorPool =
+        !Array.isArray(colorConfig) && Array.isArray(colorConfig.light) && colorConfig.light.length !== 0
+            ? colorConfig.light
+            : legacyColors;
+    const darkColorPool =
+        !Array.isArray(colorConfig) && Array.isArray(colorConfig.dark) && colorConfig.dark.length !== 0
+            ? colorConfig.dark
+            : lightColorPool;
+
+    const pickColor = (pool, prev, fallback) => {
+        const choices = pool.filter((color) => color !== prev);
+        if (choices.length !== 0) return choices[Math.floor(Math.random() * choices.length)];
+        if (pool.length !== 0) return pool[Math.floor(Math.random() * pool.length)];
+        return fallback;
+    };
+
     posts.data.sort((a, b) => {
         let x = a.pinned ?? 0,
             y = b.pinned ?? 0;
@@ -54,15 +72,21 @@
             <i class="fa-solid fa-tags fa-fw"></i>
         </span>
         <% } %>
-        <% let prev; %>
+        <% let prevLight; %>
+        <% let prevDark; %>
         <% post.tags.data.forEach((tag) => { %>
         <span class="tag">
             <%
-                const colors = theme.colors.filter((color) => color !== prev);
-                let id = Math.floor(Math.random() * colors.length);
-                prev = colors[id];
+                const lightColor = pickColor(lightColorPool, prevLight, "#5c6b72");
+                const darkColor = pickColor(darkColorPool, prevDark, lightColor);
+                prevLight = lightColor;
+                prevDark = darkColor;
             %>
-            <a href="<%- url_for(tag.path) %>" style="color: <%- colors[id] %>"><%= tag.name %></a>
+            <a
+                href="<%- url_for(tag.path) %>"
+                style="--tag-color-light: <%- lightColor %>; --tag-color-dark: <%- darkColor %>; color: var(--tag-color-light)"
+                ><%= tag.name %></a
+            >
         </span>
         <% }); %>
     </div>

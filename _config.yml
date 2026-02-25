@@ -19,11 +19,30 @@ loading: /images/loading.gif
 
 # Optional colors for category and tag
 colors:
-  - "#ffa2c4"
-  - "#00bcd4"
-  - "#03a9f4"
-  - "#00a596"
-  - "#ff7d73"
+    light:
+      - "#ffa2c4"
+      - "#00bcd4"
+      - "#03a9f4"
+      - "#00a596"
+      - "#ff7d73"
+      - "#5aa9e6"
+      - "#8fbc8f"
+      - "#f2a65a"
+      - "#c792ea"
+      - "#6ec6ca"
+      - "#9aa5b1"
+    dark:
+      - "#ffb3d1"
+      - "#4dd8e8"
+      - "#5cbfff"
+      - "#3ac4b6"
+      - "#ff9b94"
+      - "#8cc6ff"
+      - "#a8d8a8"
+      - "#f8bf86"
+      - "#dab0ff"
+      - "#8edee0"
+      - "#bec7d1"
 
 # ParticleX theme icon is adopts the Font Awesome 6
 # https://fontawesome.com
@@ -55,28 +74,25 @@ menu:
 card:
     enable: true
     description: |
-        分享开发经验、踩坑经历以及个人兴趣爱好
+        分享开发经验、踩坑经历和个人兴趣爱好
     iconLinks:
       # Icon links in card, supports Font Awesome 6 icons
       - name: github
         theme: brands
         link: https://github.com/Symb0x76
-      - name: email
-        theme: solid
-        link: mailto:symb0x76@gmail.com
       - name: bilibili
         theme: brands
         link: https://space.bilibili.com/356147928
     friendLinks:
         futurefe414: https://futurefe414.github.io/
         ttdr: http://blog.ttdr.top/
-        Y11han: https://blog.y11han.icu/
-        s3loy: https://blog.s3loy.tech/
+        # Y11han: https://blog.y11han.icu/
+        # s3loy: https://blog.s3loy.tech/
         SeanDictionary: https://seandictionary.top/
-        cEvolve05: https://cevolve05.github.io/
+        # cEvolve05: https://cevolve05.github.io/
         io-wy: https://io-wy.github.io/
-        Blauter: https://blog.bluespace.ren/
-        FOTH: https://www.foth.top/
+        # Blauter: https://blog.bluespace.ren/
+        # FOTH: https://www.foth.top/
 footer:
     since: 2025
     # Customize the server domain name ICP

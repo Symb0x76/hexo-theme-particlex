@@ -12,9 +12,9 @@
 
 # 1. 演示
 
--   [GitHub Pages](https://argvchs.github.io)
--   [Netlify](https://argvchs.netlify.app)
--   [Vercel](https://argvchs.vercel.app)
+- [GitHub Pages](https://argvchs.github.io)
+- [Netlify](https://argvchs.netlify.app)
+- [Vercel](https://argvchs.vercel.app)
 
 # 2. 安装
 
@@ -73,7 +73,7 @@ archive_generator:
 
 ## 3.1. 基本配置
 
-`background` 参数是一个列表，打开时会随机加载一个背景。
+`background` 支持 `light` / `dark` 两套背景图；列表写法仍可作为兼容旧配置的随机背景方案。
 
 ```yaml
 # Avatar image
@@ -81,18 +81,26 @@ avatar: /images/avatar.jpg
 
 # Home page background image
 background:
-    - /images/background.jpg
+    light: /images/background.jpg
+    dark: /images/background-dark.jpg
 
 # Loading image
 loading: /images/loading.gif
 
 # Optional colors for category and tag
 colors:
-    - "#ffa2c4"
-    - "#00bcd4"
-    - "#03a9f4"
-    - "#00a596"
-    - "#ff7d73"
+    light:
+        - "#ffa2c4"
+        - "#00bcd4"
+        - "#03a9f4"
+        - "#00a596"
+        - "#ff7d73"
+    dark:
+        - "#ffb3d1"
+        - "#4dd8e8"
+        - "#5cbfff"
+        - "#3ac4b6"
+        - "#ff9b94"
 ```
 
 ## 3.2. 内容配置
@@ -162,6 +170,44 @@ footer:
         enable: false
         code:
         link:
+```
+
+### 3.2.4. 样式定制
+
+#### 代码块语言标签
+
+ParticleX 提供了低调且易于定制的代码块语言标签样式，支持深色/浅色主题自适应。
+
+- **默认主题**：使用 `#6f8298` 低饱和度蓝灰色
+- **深色主题**：使用 `#3f4c61` 深蓝灰色
+- **浅色主题**：使用 `#e6ecf3` 浅蓝灰色
+- **优化特性**：精简的 padding (`7px 12px`)、柔和的阴影、低对比度设计，避免分散阅读注意力
+
+在 `themes/particlex/source/css/main.css` 中的 `.language` 选择器可进一步定制样式。
+
+#### 目录（TOC）样式
+
+目录卡片支持深色/浅色主题切换，采用低调的配色方案：
+
+- **背景**：浅色主题 `#ffffff`，深色主题半透明蓝灰色
+- **标题**：实心色背景 `#dfe6ee`（浅色）或深色对应色
+- **链接颜色**：使用 `#7f95ad`（浅色）和 `#617991`（深色）的低饱和蓝灰，避免过度突出
+
+#### Admonition 标题内联 Markdown
+
+本主题已扩展对 Admonition 标题中的内联 Markdown 语法支持，包括：
+
+- **代码片段**：`` `code` `` 会被渲染为 `<code>` 标签
+- **粗体**：`**bold text**` 会被渲染为 `<strong>` 标签
+- **斜体**：`*italic text*` 会被渲染为 `<em>` 标签
+
+此功能由 `scripts/mkdocs-admonition-compat.js` 中的 Markdown 过滤器和 HTML 后处理器实现。
+
+**示例**：
+
+```markdown
+!!! note "标题中的 `代码` 和 **粗体**"
+这是一个带有 Markdown 格式的 admonition。
 ```
 
 ## 3.3. 功能配置
@@ -305,36 +351,48 @@ gitalk:
 
 ### 3.4.3. Waline
 
-Waline 是一个简单、安全的评论系统。
+Waline 是一个简单、安全的评论系统，支持完整的多语言本地化配置。
 
 详见：[在 ParticleX 上使用 Waline | Yuzi's Blog](https://blog.yuzi.dev/posts/bcb4ff00.html)
+
+**基础配置**：
 
 ```yaml
 # Waline
 # https://github.com/walinejs/waline
 waline:
-    enable: false
-    serverURL: # Waline server address url, you should set this to your own link
-    locale: # Locale: https://waline.js.org/guide/client/i18n.html#locale-option
-    commentCount: true # If false, comment count will only be displayed in post page, not in home page
-    pageview: false # Pageviews count, Note: You should not enable both `waline.pageview` and `leancloud_visitors`
-    emoji: # Custom emoji
+    enable: true
+    serverURL: https://your-waline-server.vercel.app # 必须填写你的 Waline 服务器地址（含 https://）
+    commentCount: true # 是否在首页显示评论数
+    pageview: false # 浏览量计数，注意不要同时启用 waline.pageview 和 leancloud_visitors
+    emoji: # 自定义 emoji
         - https://unpkg.com/@waline/emojis@1.2.0/weibo
         - https://unpkg.com/@waline/emojis@1.2.0/alus
         - https://unpkg.com/@waline/emojis@1.2.0/bilibili
         - https://unpkg.com/@waline/emojis@1.2.0/qq
         - https://unpkg.com/@waline/emojis@1.2.0/tieba
         - https://unpkg.com/@waline/emojis@1.2.0/tw-emoji
-    meta: # Comment information, valid meta are nick, mail and link
+    meta: # 评论信息字段，可选 nick（昵称）、mail（邮箱）、link（网址）
         - nick
         - mail
         - link
-    requiredMeta: # Set required meta field, e.g.: [nick] | [nick, mail]
+    requiredMeta: # 必填字段，例如 [nick] 或 [nick, mail]
         - nick
-    lang: # Language, available values: en-US, zh-CN, zh-TW, pt-BR, ru-RU, jp-JP
-    wordLimit: 0 # Word limit, no limit when setting to 0
-    login: enable # Whether enable login, can choose from 'enable', 'disable' and 'force'
-    pageSize: 10 # Comment per page
+    lang: zh-CN # 语言配置，可选值：en-US, zh-CN, zh-TW, pt-BR, ru-RU, jp-JP
+    wordLimit: 0 # 字数限制，0 表示无限制
+    login: enable # 登录配置，可选 'enable'（启用）、'disable'（禁用）或 'force'（强制）
+    pageSize: 10 # 每页评论数
+    locale: # 完整的中文本地化文案配置
+        nick: 昵称
+        nickError: 昵称不能为空
+        mail: 邮箱
+        mailError: 邮箱格式不正确
+        link: 网址
+        optional: 可选
+        placeholder: 欢迎留言，支持 Markdown
+        submit: 提交
+        preview: 预览
+        sofa: 来发第一条评论吧~
 ```
 
 ### 3.4.4. Twikoo
@@ -350,6 +408,28 @@ twikoo:
     region:
     path: location.pathname
     lang:
+```
+
+## 3.5. 文章评论配置
+
+要在文章页面启用 Waline 评论，在文章的 [Front-Matter](https://hexo.io/docs/front-matter) 中添加 `comments: true`：
+
+```yaml
+---
+title: 文章标题
+date: 2025-02-25
+comments: true
+---
+```
+
+也可以在 `scaffolds/post.md` 中默认启用评论，这样新建的文章会自动包含此字段：
+
+```yaml
+---
+title: { { title } }
+date: { { date } }
+comments: true
+---
 ```
 
 # 4. 写在最后
