@@ -1,4 +1,4 @@
-<div class="article">
+<div class="article-wrapper">
     <% if (theme.toc && typeof theme.toc.enable !== 'undefined' ? theme.toc.enable : true) { %>
     <div id="toc-container" class="toc-container">
         <div class="toc-header">
@@ -10,7 +10,7 @@
         <nav id="toc" class="toc"></nav>
     </div>
     <% } %>
-    <div>
+    <div class="article">
         <h1><%= page.title %></h1>
     </div>
     <div class="info">
@@ -102,4 +102,5 @@
     </div>
     <% } %>
     <% } %>
+    </div>
 </div>

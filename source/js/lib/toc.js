@@ -1,15 +1,35 @@
 /**
  * TOC (Table of Contents) Generator
  * Generates a table of contents from h1-h6 headers in the page
+ * Supports responsive layout: sidebar on desktop, top on mobile
  */
 
 const tocMixin = {
 	data() {
 		return {
 			tocExpanded: true,
+			isLargeScreen: false,
 		};
 	},
 	methods: {
+		checkScreenSize() {
+			this.isLargeScreen = window.innerWidth >= 1200;
+			const tocNav = document.getElementById("toc");
+			const tocToggle = document.getElementById("toc-toggle");
+			
+			if (tocNav && tocToggle) {
+				if (this.isLargeScreen) {
+					// Large screen: always show TOC
+					tocNav.style.maxHeight = "none";
+					tocToggle.style.display = "none";
+					this.tocExpanded = true;
+				} else {
+					// Small screen: show toggle button
+					tocToggle.style.display = "block";
+					tocNav.style.maxHeight = this.tocExpanded ? "1000px" : "0";
+				}
+			}
+		},
 		generateTableOfContents() {
 			// Only run on post pages
 			const content = document.querySelector(".article .content");
@@ -70,6 +90,9 @@ const tocMixin = {
 			const tocHtml = renderTocTree(toc);
 			tocNav.innerHTML = tocHtml;
 
+			// Check screen size and adjust UI
+			this.checkScreenSize();
+
 			// Add click handlers to TOC links
 			tocNav.querySelectorAll("a").forEach((link) => {
 				link.addEventListener("click", (e) => {
@@ -112,7 +135,7 @@ const tocMixin = {
 				});
 			});
 
-			// Toggle TOC
+			// Toggle TOC (only on small screens)
 			if (tocToggle) {
 				tocToggle.addEventListener("click", () => {
 					this.tocExpanded = !this.tocExpanded;
@@ -123,6 +146,13 @@ const tocMixin = {
 				});
 			}
 		},
+		handleWindowResize() {
+			// Debounce resize events
+			clearTimeout(this.resizeTimer);
+			this.resizeTimer = setTimeout(() => {
+				this.checkScreenSize();
+			}, 250);
+		},
 	},
 	watch: {
 		loading(newVal) {
@@ -131,6 +161,8 @@ const tocMixin = {
 				this.$nextTick(() => {
 					setTimeout(() => {
 						this.generateTableOfContents();
+						// Add resize listener
+						window.addEventListener("resize", this.handleWindowResize.bind(this));
 					}, 100);
 				});
 			}
