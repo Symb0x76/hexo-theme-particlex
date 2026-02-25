@@ -15,8 +15,16 @@
 <script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
 <script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
 <link
+    id="hljs-theme-light"
     rel="stylesheet"
+    media="(prefers-color-scheme: light)"
     href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/<%- theme.highlight.style %>.min.css"
+/>
+<link
+    id="hljs-theme-dark"
+    rel="stylesheet"
+    media="(prefers-color-scheme: dark)"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css"
 />
 <script src="<%- url_for("/js/lib/highlight.js") %>"></script>
 <% } %>
@@ -53,5 +61,5 @@
 <% if (type === "index") { %>
 <script src="<%- url_for("/js/lib/home.js") %>"></script>
 <% } %>
-<link rel="stylesheet" href="<%- url_for('/css/admonition.css') %>" />
 <link rel="stylesheet" href="<%- url_for("/css/main.css") %>" />
+<link rel="stylesheet" href="<%- url_for('/css/admonition.css') %>" />

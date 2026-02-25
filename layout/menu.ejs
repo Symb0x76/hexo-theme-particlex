@@ -3,6 +3,10 @@
         <a class="title" href="<%- config.root %>">
             <span><%= config.title.toUpperCase() %></span>
         </a>
+        <a href="javascript:void(0)" class="theme-toggle" @click="toggleTheme" :title="themeToggleTitle">
+            <i class="fa-solid" :class="themeToggleIcon"></i>
+            <span>&ensp;{{ themeToggleText }}</span>
+        </a>
         <% Object.entries(theme.menu).forEach(([key, value]) => { %>
         <a href="<%- url_for(value.link) %>">
             <i class="fa-<%- value.theme %> fa-<%- value.name %> fa-fw"></i>
@@ -17,6 +21,14 @@
         </div>
         <transition name="slide">
             <div class="items" v-show="showMenuItems">
+                <a href="javascript:void(0)" class="theme-toggle" @click="toggleTheme">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid" :class="themeToggleIcon"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">{{ themeToggleTextLong }}</div>
+                    </div>
+                </a>
                 <% Object.entries(theme.menu).forEach(([key, value]) => { %>
                 <a href="<%- url_for(value.link) %>">
                     <div class="item">

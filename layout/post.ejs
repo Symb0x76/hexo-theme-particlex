@@ -9,6 +9,15 @@
             </span>
             <%= date(page.date, "YYYY/M/D") %>
         </span>
+        <% const readingTime = page.readTime || page.readtime; %>
+        <% if (typeof readingTime !== "undefined" && readingTime) { %>
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-clock fa-fw"></i>
+            </span>
+            <%= readingTime %>
+        </span>
+        <% } %>
         <% if (page.categories && page.categories.data.length !== 0) { %>
         <span class="category">
             <a href="<%- url_for(page.categories.data[0].path) %>">

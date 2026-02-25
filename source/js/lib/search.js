@@ -4,17 +4,22 @@ mixins.search = {
     },
     watch: {
         search(value) {
-            let timeline = this.$refs.timeline.childNodes;
-            for (let i of timeline)
-                if (!value || i.dataset.title.includes(value)) {
-                    i.style.opacity = 1;
-                    i.style.visibility = "visible";
-                    i.style.marginTop = 0;
+            const timeline = this.$refs.timeline;
+            if (!timeline) return;
+
+            const items = timeline.querySelectorAll(".timeline");
+            for (const item of items) {
+                const keyword = decodeURIComponent(item.dataset.search || "");
+                if (!value || keyword.includes(value)) {
+                    item.style.opacity = 1;
+                    item.style.visibility = "visible";
+                    item.style.marginTop = 0;
                 } else {
-                    i.style.opacity = 0;
-                    i.style.visibility = "hidden";
-                    i.style.marginTop = -i.offsetHeight - 30 + "px";
+                    item.style.opacity = 0;
+                    item.style.visibility = "hidden";
+                    item.style.marginTop = -item.offsetHeight - 30 + "px";
                 }
+            }
         },
     },
     computed: {

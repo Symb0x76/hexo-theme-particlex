@@ -45,10 +45,6 @@
         <div class="content" v-pre>
             <% if (typeof post.description !== "undefined") { %>
             <%- markdown(post.description) %>
-            <% } else if (post.excerpt) { %>
-            <%- post.excerpt %>
-            <% } else { %>
-            <%- post.content %>
             <% } %>
         </div>
     </div>

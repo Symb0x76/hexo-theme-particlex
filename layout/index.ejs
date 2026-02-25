@@ -1,8 +1,30 @@
+<%
+    const backgroundConfig = theme.background;
+    const backgroundLight =
+        backgroundConfig &&
+        typeof backgroundConfig === "object" &&
+        !Array.isArray(backgroundConfig) &&
+        backgroundConfig.light
+            ? url_for(backgroundConfig.light)
+            : "";
+    const backgroundDark =
+        backgroundConfig &&
+        typeof backgroundConfig === "object" &&
+        !Array.isArray(backgroundConfig) &&
+        backgroundConfig.dark
+            ? url_for(backgroundConfig.dark)
+            : "";
+    const backgroundImages = Array.isArray(backgroundConfig)
+        ? backgroundConfig.map(url_for).join(",")
+        : "";
+%>
 <div id="home-head">
     <div
         id="home-background"
         ref="homeBackground"
-        data-images="<%- theme.background.map(url_for) %>"
+        data-bg-light="<%- backgroundLight %>"
+        data-bg-dark="<%- backgroundDark %>"
+        data-images="<%- backgroundImages %>"
     ></div>
     <div id="home-info" @click="homeClick">
         <span class="loop"></span>

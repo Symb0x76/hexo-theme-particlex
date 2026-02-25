@@ -5,8 +5,14 @@
 avatar: /images/avatar.jpg
 
 # Home page background image
+# Supports theme-specific background images:
+# background:
+#     light: /images/background.jpg
+#     dark: /images/background-dark.jpg
+# Legacy array syntax is still supported as fallback random images.
 background:
-    - /images/background.jpg
+    light: /images/background.jpg
+    dark: /images/background-dark.jpg
 
 # Loading image
 loading: /images/loading.gif
@@ -79,7 +85,7 @@ highlight:
 
 # KaTeX math rendering
 math:
-    enable: false
+    enable: true
 
 # Image preview
 preview:
@@ -91,7 +97,7 @@ crypto:
 
 # Search
 search:
-    enable: false
+    enable: true
 
 # giscus
 # https://github.com/giscus/giscus
