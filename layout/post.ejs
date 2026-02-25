@@ -1,4 +1,15 @@
 <div class="article">
+    <% if (theme.toc && typeof theme.toc.enable !== 'undefined' ? theme.toc.enable : true) { %>
+    <div id="toc-container" class="toc-container">
+        <div class="toc-header">
+            <span class="toc-title">文章目录</span>
+            <button class="toc-toggle" id="toc-toggle" title="展开/收起目录">
+                <i class="fa-solid fa-chevron-up"></i>
+            </button>
+        </div>
+        <nav id="toc" class="toc"></nav>
+    </div>
+    <% } %>
     <div>
         <h1><%= page.title %></h1>
     </div>
