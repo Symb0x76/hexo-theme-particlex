@@ -372,8 +372,10 @@ html[data-theme="dark"] #archives .info .tags .tag a {
 }
 #loading img {
 	border-radius: 0;
-	height: 240px;
-	margin-top: 60px;
+	height: auto;
+	margin-top: clamp(20px, 6vmin, 60px);
+	max-width: min(240px, 56vmin);
+	width: 100%;
 }
 #loading-circle {
 	align-items: center;
@@ -1627,6 +1629,10 @@ ol li {
 	}
 }
 @media (max-width: 900px) {
+	#loading img {
+		margin-top: clamp(10px, 4vmin, 24px);
+		max-width: min(190px, 48vmin);
+	}
 	#home-head #home-info {
 		height: 350px;
 		width: 350px;
